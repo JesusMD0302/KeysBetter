@@ -88,6 +88,10 @@
     border-color: #090f13 !important;
 }
 
+.translate-100-y {
+    transform: translateY(-100%) !important;
+}
+
 .translate-100-x-start {
     transform: translateX(100%) !important;
 }
