@@ -118,6 +118,11 @@
     animation-delay: 0.1s;
 }
 
+.alert-animation {
+    animation: alert 2.8s;
+    animation-delay: 0.1s;
+}
+
 footer {
     position: relative;
     bottom: 0;
@@ -156,5 +161,27 @@ footer {
     }
     100% {
         transform: rotate(0deg);
+    }
+}
+
+@keyframes alert {
+    0% {
+        top: -100%;
+    }
+
+    30% {
+        top: 3%;
+    }
+
+    50% {
+        top: 3%;
+    }
+    
+    80% {
+        top: 3%;
+    }
+
+    100% {
+        top: -100%;
     }
 }

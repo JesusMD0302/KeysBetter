@@ -58,7 +58,7 @@
         </nav>
         <!-- Fin Barra de Navegación -->
         <!-- Container Main -->
-        <div class="container">
+        <div id="main" class="container position-relative">
             <div class="py-3 row justify-content-between">
                 <main class="col-md-8 mb-3 d-flex flex-column gap-2">
                     <!-- Contenedores de Tarjetas -->
@@ -126,26 +126,58 @@
             <div class="container h-100 d-flex justify-content-between align-items-center">
                 <p class="m-0">&#169; Copyright</p>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item background-color-2 text-light">Román Ismael Chan Tuyu</li>
-                    <li class="list-group-item background-color-2 text-light">Iván Guadalupe Gárcia Flores</li>
-                    <li class="list-group-item background-color-2 text-light">Jesús Alberto Mena Dzul</li>
+                    <li class="list-group-item background-color-2 text-light">
+                        Román Ismael Chan Tuyu
+                    </li>
+                    <li class="list-group-item background-color-2 text-light">
+                        Iván Guadalupe Gárcia Flores
+                    </li>
+                    <li class="list-group-item background-color-2 text-light">
+                        Jesús Alberto Mena Dzul
+                    </li>
                 </ul>
             </div>
         </footer>
         <!-- Fin Container Footer -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            const mainContainer = document.getElementById("main");
             const btnPago = document.getElementById("pago");
 
+            const showAlert = (alerta = "", id = "") => {
+                mainContainer.innerHTML += alerta;
+
+                let alertaAEliminar = document.getElementById(id)
+
+                // setTimeout(() => {
+                //     mainContainer.removeChild(alertaAEliminar);
+                // }, 3000);
+            };
+
             btnPago.addEventListener("click", (e) => {
-                const pagoOpcion = document.querySelector('input[name="pago"]:checked');
+                e.preventDefault();
+                let alerta = "";
+                let pagoOpcion = document.querySelector('input[name="pago"]:checked');
+
                 if (!pagoOpcion) {
-                    e.preventDefault();
-                    alert("No se ha podido realizar la compra, ingrese un metodo de pago");
+                    alerta = `<div id="alerta" class="alert w-50 text-center alert-danger show position-absolute start-50 translate-middle-x z-index-2 alert-animation" role="alert">
+                        No se ha podido realizar la compra, ingrese un metodo de pago
+                    </div>`;
+
+                    showAlert(alerta, "alerta");
                     return;
                 }
 
-                alert("La compra ha sido exitosa");
+                alerta = `<div id="alertaSuccess" class="alert w-50 text-center alert-success show position-absolute start-50 translate-middle-x z-index-2 alert-animation" role="alert">
+                    La compra ha sido exitosa
+                </div>`;
+                console.log(alerta);
+
+                showAlert(alerta, "alertaSuccess");
+
+                setTimeout(() => {
+                    window.location.href = "/assets/pages/busqueda.html"
+                }, 3000);
             });
         </script>
     </body>
