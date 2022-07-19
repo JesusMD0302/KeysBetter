@@ -139,7 +139,7 @@
             </div>
         </footer>
         <!-- Fin Container Footer -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
         <script>
             const mainContainer = document.getElementById("main");
             const btnPago = document.getElementById("pago");
@@ -147,7 +147,7 @@
             const showAlert = (alerta = "", id = "") => {
                 mainContainer.innerHTML += alerta;
 
-                let alertaAEliminar = document.getElementById(id)
+                let alertaAEliminar = document.getElementById(id);
 
                 // setTimeout(() => {
                 //     mainContainer.removeChild(alertaAEliminar);
@@ -176,7 +176,7 @@
                 showAlert(alerta, "alertaSuccess");
 
                 setTimeout(() => {
-                    window.location.href = "/assets/pages/busqueda.html"
+                    window.location.href = "/assets/pages/busqueda.html";
                 }, 3000);
             });
         </script>

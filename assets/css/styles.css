@@ -1,3 +1,7 @@
+#games {
+    transition: 1s all;
+}
+
 .img-cover {
     width: 100%;
     min-height: 255px;
@@ -184,4 +188,18 @@ footer {
     100% {
         top: -100%;
     }
+}
+
+.game-card {
+    animation: aparecer 1s linear;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+
 }
