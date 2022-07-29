@@ -10,7 +10,7 @@ const inputSearch = document.getElementById("input-busqueda");
     El evento muestra el array de juegos en el documento
 */
 document.addEventListener("DOMContentLoaded", () => {
-    Game.showGames(gamesContainer, gamesList, 2);
+    Game.showGames(gamesContainer, gamesList, 1);
 });
 
 /* 
@@ -21,5 +21,5 @@ formSearch.addEventListener("input", (e) => {
     e.preventDefault();
     const valueSearch = inputSearch.value.toLowerCase();
 
-    Game.showGames(gamesContainer, Game.searchGame(gamesContainer, gamesList, valueSearch), 2);
+    Game.showGames(gamesContainer, Game.searchGame(gamesContainer, gamesList, valueSearch), 1);
 });

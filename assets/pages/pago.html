@@ -92,21 +92,21 @@
                     <!-- Fin Contenedores de Tarjetas -->
                 </main>
                 <!-- Container Calculos de Pago -->
-                <aside class="col-md-4">
+                <aside class="total col-md-4">
                     <div class="card text-bg-danger background-color-3">
                         <div class="card-header">Resumen</div>
                         <div class="card-body text-center">
                             <div class="d-flex justify-content-between">
                                 <p>Subtotal</p>
-                                <p>$0.00</p>
+                                <p>$<span class="subtotal">0</span></p>
                             </div>
                             <div class="d-flex justify-content-between border-bottom">
                                 <p>IVA</p>
-                                <p>$0.00</p>
+                                <p>$<span class="iva">0</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p>IVA</p>
-                                <p>$0.00</p>
+                                <p>Total</p>
+                                <p>$<span class="total">0</span></p>
                             </div>
                             <a
                                 id="pago"
@@ -140,45 +140,7 @@
         </footer>
         <!-- Fin Container Footer -->
         <script src="/assets/js/bootstrap.bundle.min.js"></script>
-        <script>
-            const mainContainer = document.getElementById("main");
-            const btnPago = document.getElementById("pago");
-
-            const showAlert = (alerta = "", id = "") => {
-                mainContainer.innerHTML += alerta;
-
-                let alertaAEliminar = document.getElementById(id);
-
-                // setTimeout(() => {
-                //     mainContainer.removeChild(alertaAEliminar);
-                // }, 3000);
-            };
-
-            btnPago.addEventListener("click", (e) => {
-                e.preventDefault();
-                let alerta = "";
-                let pagoOpcion = document.querySelector('input[name="pago"]:checked');
-
-                if (!pagoOpcion) {
-                    alerta = `<div id="alerta" class="alert w-50 text-center alert-danger show position-absolute start-50 translate-middle-x z-index-2 alert-animation" role="alert">
-                        No se ha podido realizar la compra, ingrese un metodo de pago
-                    </div>`;
-
-                    showAlert(alerta, "alerta");
-                    return;
-                }
-
-                alerta = `<div id="alertaSuccess" class="alert w-50 text-center alert-success show position-absolute start-50 translate-middle-x z-index-2 alert-animation" role="alert">
-                    La compra ha sido exitosa
-                </div>`;
-                console.log(alerta);
-
-                showAlert(alerta, "alertaSuccess");
-
-                setTimeout(() => {
-                    window.location.href = "/assets/pages/busqueda.html";
-                }, 3000);
-            });
-        </script>
+        <script src="/assets/js/carrito/carrito.js"></script>
+        <script src="/assets/js/pago.js"></script>
     </body>
 </html>

@@ -1,5 +1,6 @@
-#games {
-    transition: 1s all;
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 .img-cover {
@@ -11,7 +12,7 @@
 
 .img-cover-slide {
     width: 100%;
-    min-height: 300px;
+    min-height: 400px;
     max-height: 300px;
     object-fit: cover;
 }
@@ -123,14 +124,20 @@
 }
 
 .alert-animation {
-    animation: alert 2.8s;
-    animation-delay: 0.1s;
+    animation: alert .8s linear;
+    top: 3%;
+}
+
+.z-index-100 {
+    z-index: 1000000000000;
+}
+
+.alert-animation-out {
+    animation: alert-out .8s linear;
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    max-height: 180px;
 }
 
 @keyframes cart-jump {
@@ -169,29 +176,19 @@ footer {
 }
 
 @keyframes alert {
-    0% {
+    from {
         top: -100%;
     }
+}
 
-    30% {
-        top: 3%;
-    }
-
-    50% {
-        top: 3%;
-    }
-    
-    80% {
-        top: 3%;
-    }
-
-    100% {
+@keyframes alert-out {
+    to {
         top: -100%;
     }
 }
 
 .game-card {
-    animation: aparecer 1s linear;
+    animation: aparecer .3s linear;
 }
 
 @keyframes aparecer {
@@ -199,7 +196,6 @@ footer {
         opacity: 0;
     }
     to {
-        opacity: 1;
+        opacity: 100%;
     }
-
 }

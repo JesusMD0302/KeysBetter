@@ -1,5 +1,6 @@
 export default class Game {
     constructor(
+        id = 0,
         title = "",
         description = "",
         price = 0,
@@ -7,12 +8,23 @@ export default class Game {
         developer = "",
         editor = ""
     ) {
+        this.Id = id;
         this.Title = title;
         this.Description = description;
         this.Price = price;
         this.UrlImage = urlImage;
         this.Developer = developer;
         this.Editor = editor;
+    }
+
+    /**
+     * @param {number} id
+     */
+    set Id(id) {
+        if (typeof id !== "number") {
+            return;
+        }
+        this.id = id;
     }
 
     /**
@@ -41,7 +53,7 @@ export default class Game {
      */
     set Price(price) {
         if (typeof price !== "number" || price <= 0.0) {
-            throw "El valor ingresado no es valido";
+            throw "El precio ingresado no es valido";
         }
 
         this.price = price;
@@ -79,7 +91,32 @@ export default class Game {
     /* 
         Método para crear el elemento card del juego
     */
-    createCardElement() {
+    /**
+     *
+     * @param {Number} comprado
+     */
+    createCardElement(comprado = 1) {
+        let ruta = "";
+        let precio = `<p class="card-text">$${this.price}</p>`;
+
+        switch (comprado) {
+            case 1:
+                ruta = "/assets/pages/juego_sin_login.html?id=";
+                break;
+
+            case 2:
+                ruta = "/assets/pages/juego.html?id=";
+                break;
+
+            case 3:
+                ruta = "/assets/pages/juego_comprado.html?id=";
+                precio = "";
+                break;
+
+            default:
+                break;
+        }
+
         let cardBody = `
         <div class="col-lg-3 col-md-6 mb-3 game-card">
             <div class="card h-100">
@@ -90,9 +127,11 @@ export default class Game {
                 />
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <h2 class="card-title fs-5 mb-0">
-                        <a class="text-decoration-none text-dark" href="">${this.title}</a>
+                        <a class="text-decoration-none text-dark" href="${ruta + this.id}">${
+            this.title
+        }</a>
                     </h2>
-                    <p class="card-text">$${this.price}</p>
+                    ${precio}
                 </div>
             </div>
         </div>`;
@@ -134,6 +173,18 @@ export default class Game {
         }
     }
 
+    devolverValores() {
+        return {
+            id: this.id,
+            title: this.title,
+            description: this.description,
+            price: this.price,
+            urlImage: this.urlImage,
+            developer: this.developer,
+            editor: this.editor,
+        };
+    }
+
     /* 
         Método para buscar o filtrar los juegos que en su titulo contenga el valor de busqueda ingresado.
     */
@@ -146,7 +197,7 @@ export default class Game {
         searchValue = searchValue.trim();
 
         if (searchValue === "") {
-            return gamesList;
+            return listGames;
         }
 
         const newGamesList = listGames.filter((e) => {
@@ -159,9 +210,13 @@ export default class Game {
     /* 
         Método para mostrar en el contenedor de juegos en el archivo html, los juegos indicados en el array de entrada, 
     */
-    static showGames(gamesContainer = document.getElementById("games"), listGames = []) {
+    static showGames(
+        gamesContainer = document.getElementById("games"),
+        listGames = [],
+        comprado = 1
+    ) {
         listGames.forEach((e) => {
-            gamesContainer.innerHTML += e.createCardElement();
+            gamesContainer.innerHTML += e.createCardElement(comprado);
         });
 
         if (!gamesContainer.hasChildNodes()) {

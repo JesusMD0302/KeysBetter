@@ -166,7 +166,13 @@
         </footer>
         <!-- Fin Container Footer -->
 
+        <script>
+            localStorage.setItem("carrito", JSON.stringify([]))
+            localStorage.setItem("usuarios", JSON.stringify([]))
+            localStorage.setItem("juegos-comprados", JSON.stringify([]))
+
+        </script>
         <script src="/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="/assets/js/games/default-games.js" type="module"></script>
+        <script src="/assets/js/games/default-games-sin_login.js" type="module"></script>
     </body>
 </html>
